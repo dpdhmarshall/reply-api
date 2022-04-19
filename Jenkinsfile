@@ -60,7 +60,8 @@ pipeline {
                 )
               ]) {
                 sh """
-                echo ${REGISTRY_PASS} | docker login ${REGISTRY_URL} -u ${REGISTRY_USER} --password-stdin
+                docker logout
+                echo ${REGISTRY_PASS} | docker login -u ${REGISTRY_USER} ${REGISTRY_URL} --password-stdin
                 docker push ${IMAGE_BRANCH_TAG}.${env.GIT_COMMIT[0..6]}
                 docker tag ${IMAGE_BRANCH_TAG}.${env.GIT_COMMIT[0..6]} ${IMAGE_BRANCH_TAG}
                 docker push ${IMAGE_BRANCH_TAG}
