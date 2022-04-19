@@ -16,7 +16,7 @@ def reply():
 # Used for Prometheus scraping and display/alerts for Grafana dash
 @app.route('/datagen')
 def generate():
-    return jsonify({"data" : random.randint(0, 1000)})
+    return jsonify({"data" : random.randint(0, 10000)})
 
 
 if __name__ == '__main__':
